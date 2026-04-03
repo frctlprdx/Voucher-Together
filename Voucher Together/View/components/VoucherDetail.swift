@@ -76,25 +76,20 @@ struct VoucherDetail: View {
                 }
             }
             List {
-                Button {
-                    
+                DisclosureGroup {
+                    Text(voucherDetail.description) // Deskripsi muncul di sini
+                        .font(.footnote)
+                        .foregroundColor(.black)
                 } label: {
                     HStack{
                         Text("Description")
-                        Spacer()
-                        Text("Detail \(Image(systemName: "chevron.right"))").font(.footnote).foregroundColor(.secondary)
-                        
                     }
                 }
-                Button {
+                DisclosureGroup {
                     //action
                 } label: {
                     HStack{
                         Text("People")
-                        Spacer()
-                        Text("Detail \(Image(systemName: "chevron.right"))")
-                            .font(.footnote)
-                            .foregroundColor(.secondary)
                     }
                 }
 

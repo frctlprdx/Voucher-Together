@@ -11,7 +11,20 @@ import SwiftUI
 struct Voucher_TogetherApp: App {
     var body: some Scene {
         WindowGroup {
-            HomeView()
+            TabView {
+                Tab("Home", systemImage: "house.fill"){
+                    HomeView()
+                }
+                Tab("Wishlist", systemImage: "heart.fill"){
+                    WishlistView()
+                }
+                Tab("Personal", systemImage: "person.crop.circle.fill"){
+                    PersonalVoucherView()
+                }
+                Tab("Updates", systemImage: "bell.fill"){
+                    HomeView()
+                }
+            }
         }
     }
 }

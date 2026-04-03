@@ -4,19 +4,28 @@ struct VoucherCard: View {
     let vouchers: Voucher
 
     var body: some View {
-        
         VStack(alignment: .leading, spacing: 10) {
-            AsyncImage(url: URL(string: vouchers.imageURL ?? "")) { image in
-                image
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-            } placeholder: {
-                Color.gray.opacity(0.2)
+            ZStack (alignment: .topTrailing){
+                AsyncImage(url: URL(string: vouchers.imageURL ?? "")) { image in
+                    image
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                } placeholder: {
+                    Color.gray.opacity(0.2)
+                }
+                .frame(height: 150)
+                .frame(maxWidth: .infinity)
+                .clipped()
+                .cornerRadius(15)
+                Button {
+                    //action
+                } label: {
+                    Image(systemName: "heart").foregroundStyle(Color.white).font(Font.system(size: 20))
+                }
+                .padding()
+                .background(Circle().foregroundStyle(Color.gray).opacity(0.5))
+                .padding(5)
             }
-            .frame(height: 150)
-            .frame(maxWidth: .infinity)
-            .clipped()
-            .cornerRadius(15)
             
             HStack {
                 Text(vouchers.title)
@@ -61,6 +70,6 @@ struct VoucherCard: View {
         .padding(.horizontal)
     }
 }
-#Preview {
-    VoucherCard(vouchers: Voucher.dummyVouchers[0])
-}
+//#Preview {
+//    VoucherCard(vouchers: Voucher.dummyVouchers[0])
+//}

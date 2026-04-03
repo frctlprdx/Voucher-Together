@@ -1,10 +1,12 @@
 import Foundation
 
 struct Voucher:Identifiable{
-    var id = UUID()
+    let id = UUID()
     var imageURL: String?
     var title: String
     var category: String
+    var classification: String
+    var ownerId: String
     var host: String
     var hostImageURL: String?
     var discount: String
