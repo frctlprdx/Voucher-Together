@@ -18,11 +18,11 @@ struct Voucher_TogetherApp: App {
                 Tab("Wishlist", systemImage: "heart.fill"){
                     WishlistView()
                 }
-                Tab("Personal", systemImage: "person.crop.circle.fill"){
+                Tab("Profile", systemImage: "person.crop.circle.fill"){
                     PersonalVoucherView()
                 }
                 Tab("Updates", systemImage: "bell.fill"){
-                    HomeView()
+                    UpdateView()
                 }
             }
         }
