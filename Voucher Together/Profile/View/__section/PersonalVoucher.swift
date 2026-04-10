@@ -1,35 +1,28 @@
-import SwiftUI
+    import SwiftUI
 
-struct VoucherList: View {
-    var selectedCategory: String = "All" 
-    var searchText: String = ""
+struct PersonalVoucher: View {
+    var selectedClassification: String
     @State private var voucherList: [Voucher] = Voucher.dummyVouchers
     @State private var selectedVoucher: Voucher? = nil
     @State var isPresenting = false
 
-    // Logika Filter Data
+    // Logika Filter
     var filteredVouchers: [Voucher] {
-        voucherList.filter { voucher in
-            let matchCategory = (selectedCategory == "All" || voucher.category == selectedCategory)
-            let matchSearch = (searchText.isEmpty || voucher.title.localizedCaseInsensitiveContains(searchText))
-            return matchCategory && matchSearch
-        }
+        voucherList.filter { $0.classification == selectedClassification }
     }
 
     var body: some View {
-        ScrollView(showsIndicators: false) {
             VStack(spacing: 20) {
-                // Pastikan menggunakan filteredVouchers
+                // Gunakan hasil filter
                 ForEach(filteredVouchers) { list in
                     VoucherCard(vouchers: list)
                         .onTapGesture {
                             selectedVoucher = list
-                            isPresenting.toggle()
+                            self.isPresenting.toggle()
                         }
                 }
             }
             .padding(.vertical)
-        }
         .sheet(isPresented: $isPresenting) {
             if let voucher = selectedVoucher {
                 VoucherDetail(voucherDetail: voucher)

@@ -4,12 +4,13 @@ struct UpdateList: View {
     @State private var updateList: [Update] = Update.dummyUpdate
 
     var body: some View {
-        NavigationStack {
-            List {
-                ForEach(updateList) { item in
-                    Section(header: Text(item.time, format: .dateTime.day().month().year())) {
+        List {
+            ForEach(updateList) { item in
+                Section(header: Text(item.time, format: .dateTime.day().month().year())) {
+                    
+                    // Tambahkan NavigationLink di sini
+                    NavigationLink(destination: UpdateDetailView(update: item)) {
                         HStack(alignment: .top, spacing: 12) {
-                            // Indikator Belum Dibaca (Titik Biru)
                             if !item.opened {
                                 Circle()
                                     .fill(Color.blue)
@@ -32,9 +33,7 @@ struct UpdateList: View {
                     }
                 }
             }
-            .navigationTitle("Updates")
-            .listStyle(.insetGrouped)   
         }
+        .listStyle(.insetGrouped)
     }
 }
-
