@@ -8,11 +8,18 @@ struct CategoryButton: View {
     var body: some View {
         Button(action: action) {
             Text(title)
-                .padding(.horizontal, 16)
-                .padding(.vertical, 8)
-                .background(isSelected ? Color.blue : Color.gray.opacity(0.2))
+                .font(.subheadline) // Menjaga konsistensi tipografi
+                .fontWeight(.medium)
+                .padding(.horizontal, 20) // Sedikit diperlebar agar lebih nyaman
+                .frame(minHeight: 44) // MEMASTIKAN tinggi minimal sesuai HIG
+                .background(isSelected ? Color.blue : Color(.systemGray6))
                 .foregroundColor(isSelected ? .white : .primary)
-                .cornerRadius(20)
+                // Menggunakan continuous corner radius agar lebih halus khas Apple
+                .clipShape(RoundedRectangle(cornerRadius: 22, style: .continuous))
         }
+        // Menambahkan contentShape agar seluruh area background bisa diklik
+        .contentShape(Rectangle())
+        // Menghilangkan scaling bawaan yang kadang memperkecil area klik saat ditekan
+        .buttonStyle(PlainButtonStyle())
     }
 }

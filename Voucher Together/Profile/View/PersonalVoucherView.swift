@@ -2,13 +2,14 @@ import SwiftUI
 
 struct PersonalVoucherView: View {
     @State private var selectedClassification: String = "Personal Voucher"
+    @EnvironmentObject var authViewModel: AuthViewModel
     
     var body: some View {
         NavigationStack {
             ZStack(alignment: .bottomTrailing) {
                 ScrollView {
                     VStack(spacing: 20) {
-                        ProfileSection()
+                        ProfileSection().environmentObject(authViewModel)
                         OptionSection(selectedClassification: $selectedClassification)
                         PersonalVoucher(selectedClassification: selectedClassification)
                     }

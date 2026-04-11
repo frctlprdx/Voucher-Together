@@ -1,8 +1,8 @@
 import Foundation
 
-struct User: Codable, Identifiable {
+struct User: Identifiable, Codable {
     let id: Int
-    let name: String
-    let email: String
-    let avatarURL: String?
+    var name: String
+    var email: String
+    var avatarURL: String?
 }

@@ -103,6 +103,3 @@ struct VoucherDetail: View {
         }.padding()
     }
 }
-#Preview {
-    VoucherDetail(voucherDetail: Voucher.dummyVouchers[0])
-}

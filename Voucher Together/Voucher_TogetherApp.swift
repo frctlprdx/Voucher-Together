@@ -25,21 +25,48 @@ struct Voucher_TogetherApp: App {
     var body: some Scene {
         WindowGroup {
             TabView {
-                Tab("Home", systemImage: "house.fill"){
+                // TAB 1: Selalu Bisa Diakses
+                Tab("Home", systemImage: "house.fill") {
                     DiscoveryView()
                 }
-                Tab("Wishlist", systemImage: "heart.fill"){
-                    WishlistView()
-                }
-                Tab("Profile", systemImage: "person.crop.circle.fill"){
+
+                // TAB 2: Terkunci
+                Tab("Wishlist", systemImage: "heart.fill") {
                     if authViewModel.userSession != nil {
-                        PersonalVoucherView()
+                        WishlistView()
                     } else {
-                        LoginView()
+                        UnauthenticatedView(
+                            title: "Your Wishlist is Waiting",
+                            subtitle: "Save your favorite vouchers so you don't miss out on great deals.",
+                            imageName: "heart.circle.fill"
+                        )
                     }
                 }
-                Tab("Updates", systemImage: "bell.fill"){
-                    UpdateView()
+
+                // TAB 3: Terkunci
+                Tab("Profile", systemImage: "person.crop.circle.fill") {
+                    if authViewModel.userSession != nil {
+                        PersonalVoucherView().environmentObject(authViewModel)
+                    } else {
+                        UnauthenticatedView(
+                            title: "Profile",
+                            subtitle: "Sign in to manage your account and see your activity.",
+                            imageName: "person.circle.fill"
+                        )
+                    }
+                }
+                
+                // TAB 4: Terkunci
+                Tab("Updates", systemImage: "bell.fill") {
+                    if authViewModel.userSession != nil {
+                        UpdateView()
+                    } else {
+                        UnauthenticatedView(
+                            title: "Stay Notified",
+                            subtitle: "Get the latest updates about your shared vouchers.",
+                            imageName: "bell.circle.fill"
+                        )
+                    }
                 }
             }
         }
