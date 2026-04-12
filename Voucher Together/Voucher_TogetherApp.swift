@@ -25,12 +25,10 @@ struct Voucher_TogetherApp: App {
     var body: some Scene {
         WindowGroup {
             TabView {
-                // TAB 1: Selalu Bisa Diakses
                 Tab("Home", systemImage: "house.fill") {
                     DiscoveryView()
                 }
 
-                // TAB 2: Terkunci
                 Tab("Wishlist", systemImage: "heart.fill") {
                     if authViewModel.userSession != nil {
                         WishlistView()
@@ -43,7 +41,6 @@ struct Voucher_TogetherApp: App {
                     }
                 }
 
-                // TAB 3: Terkunci
                 Tab("Profile", systemImage: "person.crop.circle.fill") {
                     if authViewModel.userSession != nil {
                         PersonalVoucherView().environmentObject(authViewModel)
@@ -56,7 +53,6 @@ struct Voucher_TogetherApp: App {
                     }
                 }
                 
-                // TAB 4: Terkunci
                 Tab("Updates", systemImage: "bell.fill") {
                     if authViewModel.userSession != nil {
                         UpdateView()
@@ -68,7 +64,7 @@ struct Voucher_TogetherApp: App {
                         )
                     }
                 }
-            }
+            }.environmentObject(authViewModel)
         }
     }
 }

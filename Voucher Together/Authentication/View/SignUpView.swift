@@ -112,5 +112,10 @@ struct SignUpView: View {
 //            }
 //            .padding()
 //        }
+        .alert(viewModel.alertMessage, isPresented: $viewModel.showAlert) {
+        Button("OK") {
+            dismiss() // Kembali ke halaman Login setelah klik OK
+        }
+    }
     }
 }

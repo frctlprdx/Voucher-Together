@@ -63,7 +63,6 @@ struct EditProfileView: View {
                 Text("Informasi Pribadi")
             }
             
-            // MARK: - Aksi
             Section {
                 Button(role: .destructive) {
                     authViewModel.logout()

@@ -1,17 +1,14 @@
 import SwiftUI
 
 struct OptionSection: View {
-    @Binding var selectedClassification: String // Gunakan Binding
-    @State private var voucherList: [Voucher] = Voucher.dummyVouchers
+    @Binding var selectedClassification: String
     
-    var classification: [String] {
-        let allClassification = voucherList.map { $0.classification }
-        return Array(Set(allClassification)).sorted()
-    }
+    // Gunakan pilihan tetap agar tombol tidak hilang saat data kosong
+    let classifications = ["Personal Voucher", "Sharing Voucher"]
     
     var body: some View {
-        HStack {
-            ForEach(classification, id: \.self) { list in
+        HStack(spacing: 15) {
+            ForEach(classifications, id: \.self) { list in
                 OptionPicker(
                     classificationName: list,
                     isSelected: selectedClassification == list

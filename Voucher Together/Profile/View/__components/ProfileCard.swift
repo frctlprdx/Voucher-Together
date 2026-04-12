@@ -55,8 +55,3 @@ struct ProfileCard: View {
         .padding(.horizontal)
     }
 }
-
-#Preview {
-    ProfileCard(user: User.currentUser[0])
-}
-

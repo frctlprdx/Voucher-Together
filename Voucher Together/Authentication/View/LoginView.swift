@@ -109,6 +109,10 @@ struct LoginView: View {
 //                    .presentationDetents([.medium, .large])
                     .presentationDragIndicator(.visible)
             }
+        }.onChange(of: viewModel.userSession) { oldValue, newValue in
+            if newValue != nil {
+                dismiss()
+            }
         }
     }
 }

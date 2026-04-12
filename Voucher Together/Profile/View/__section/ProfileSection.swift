@@ -2,12 +2,15 @@ import SwiftUI
 
 struct ProfileSection: View {
     @EnvironmentObject var authViewModel: AuthViewModel
-    @State private var currentUser: User = User.currentUser.first!
-    
+
     var body: some View {
-        NavigationLink(destination: EditProfileView(user: $currentUser).environmentObject(authViewModel)) {
-            ProfileCard(user: currentUser)
+        if let user = authViewModel.currentUser {
+            NavigationLink(destination: EditProfileView(user: .constant(user)).environmentObject(authViewModel)) {
+                ProfileCard(user: user)
+            }
+            .buttonStyle(PlainButtonStyle())
+        } else {
+            ProgressView()
         }
-        .buttonStyle(PlainButtonStyle())
     }
 }

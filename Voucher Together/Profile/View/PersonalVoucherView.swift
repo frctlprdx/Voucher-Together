@@ -12,6 +12,17 @@ struct PersonalVoucherView: View {
                         ProfileSection().environmentObject(authViewModel)
                         OptionSection(selectedClassification: $selectedClassification)
                         PersonalVoucher(selectedClassification: selectedClassification)
+//                        Section {
+//                            Button(role: .destructive) {
+//                                authViewModel.logout()
+//                            } label: {
+//                                HStack {
+//                                    Spacer()
+//                                    Text("Log Out")
+//                                    Spacer()
+//                                }
+//                            }
+//                        }
                     }
                     .padding(.top)
                 }

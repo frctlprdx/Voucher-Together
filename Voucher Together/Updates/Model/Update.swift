@@ -1,7 +1,10 @@
 import Foundation
+import FirebaseFirestore
 
 struct Update: Codable, Identifiable{
-    let id: Int
+    
+    @DocumentID var id: String?
+    
     let userId: Int
     let userName: String
     let notifications: String
